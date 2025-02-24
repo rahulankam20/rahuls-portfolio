@@ -41,12 +41,23 @@ export default function Navbar() {
   };
 
   const handleDownloadResume = () => {
-    const link = document.createElement('a');
-    link.href = '/RAHUL ANKAM RESUME.pdf';
-    link.download = 'RAHUL ANKAM RESUME.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    const resumePath = '/RAHUL_ANKAM_RESUME.pdf';  // Updated path format
+
+    fetch(resumePath)
+      .then(response => response.blob())
+      .then(blob => {
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'RAHUL_ANKAM_RESUME.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      })
+      .catch(error => {
+        console.error('Failed to download resume:', error);
+      });
   };
 
   return (

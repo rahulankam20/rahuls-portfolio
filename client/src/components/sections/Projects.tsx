@@ -6,18 +6,21 @@ const projects = [
   {
     title: "E-commerce Platform",
     description: "A full-featured e-commerce platform with real-time inventory management",
+    preview: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=800&q=80",
     url: "https://example.com/project1",
     technologies: ["React", "Node.js", "MongoDB"]
   },
   {
     title: "Task Management App",
     description: "Collaborative task management application with real-time updates",
+    preview: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=800&q=80",
     url: "https://example.com/project2",
     technologies: ["Vue.js", "Express", "PostgreSQL"]
   },
   {
     title: "Social Media Dashboard",
     description: "Analytics dashboard for social media management",
+    preview: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
     url: "https://example.com/project3",
     technologies: ["React", "GraphQL", "AWS"]
   }
@@ -96,9 +99,19 @@ export default function Projects() {
               transform: 'translate(-50%, -50%)'
             }}
           >
-            <div className="bg-card/80 backdrop-blur-sm border border-border rounded-lg p-4 shadow-lg">
-              <p className="text-sm font-medium">View Project</p>
-              <ExternalLink size={16} className="ml-2" />
+            <div className="bg-card/80 backdrop-blur-sm border border-border rounded-lg shadow-lg overflow-hidden" style={{ width: '300px' }}>
+              <div className="relative w-full aspect-video">
+                <img 
+                  src={projects[activeProject].preview} 
+                  alt={projects[activeProject].title}
+                  className="object-cover w-full h-full opacity-50"
+                />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <p className="text-white font-medium flex items-center gap-2">
+                    View Project <ExternalLink size={16} />
+                  </p>
+                </div>
+              </div>
             </div>
           </motion.div>
         )}
