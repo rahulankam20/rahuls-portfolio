@@ -25,31 +25,36 @@ export default function FloatingIcons() {
     const iconElements = Array.from(container.children);
 
     iconElements.forEach((icon, index) => {
-      // Set initial positions with higher opacity
+      // Randomize starting positions across the viewport
+      const startX = Math.random() * window.innerWidth * 0.8;
+      const startY = Math.random() * window.innerHeight * 0.8;
+
+      // Set initial positions with high opacity
       gsap.set(icon, {
-        x: Math.random() * window.innerWidth * 0.7,
-        y: Math.random() * window.innerHeight * 0.7,
-        opacity: 0.4, // Higher initial opacity
-        scale: 0.8
+        x: startX,
+        y: startY,
+        opacity: 0.15,
+        scale: 1,
+        rotate: Math.random() * 360
       });
 
-      // Create floating animation with slower movement
+      // Create floating animation
       gsap.to(icon, {
-        duration: 15, // Slower duration
-        x: "+=100",
-        y: "+=100",
-        rotation: "random(-30, 30)",
+        duration: 30,
+        x: `+=${Math.random() * 300 - 150}`,
+        y: `+=${Math.random() * 300 - 150}`,
+        rotation: `+=${Math.random() * 360}`,
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut",
-        delay: index * 0.5
+        delay: index * 0.2
       });
 
-      // Create pulsing opacity animation
+      // Create scale and opacity animation
       gsap.to(icon, {
-        duration: 3,
-        opacity: 0.7, // Higher peak opacity
-        scale: 1,
+        duration: 5,
+        scale: 1.2,
+        opacity: 0.25,
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut",
@@ -65,13 +70,17 @@ export default function FloatingIcons() {
   return (
     <div 
       ref={containerRef} 
-      className="fixed inset-0 -z-10 pointer-events-none overflow-hidden"
+      className="fixed inset-0 pointer-events-none overflow-hidden"
+      style={{ zIndex: 100 }} //added zIndex to bring to foreground
     >
       {icons.map(({ Icon }, index) => (
         <Icon
           key={index}
-          className="absolute text-[#FFA94D] w-32 h-32 md:w-40 md:h-40" // Larger size
-          style={{ filter: 'blur(1px)' }} // Slight blur for depth
+          className="absolute text-[#FFA94D] w-64 h-64 md:w-72 md:h-72"
+          style={{ 
+            filter: 'blur(3px)',
+            willChange: 'transform'
+          }}
         />
       ))}
     </div>

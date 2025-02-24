@@ -7,11 +7,13 @@ import Home from "@/components/sections/Home";
 import About from "@/components/sections/About";
 import Projects from "@/components/sections/Projects";
 import Contact from "@/components/sections/Contact";
+import Preloader from "@/components/Preloader";
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="min-h-screen bg-background text-foreground">
+        <Preloader />
         <Navbar />
         <CustomCursor />
         <main>
