@@ -5,8 +5,8 @@ export default function Home() {
   return (
     <section id="home" className="min-h-screen relative overflow-hidden">
       <FloatingIcons />
-      
-      <div className="container mx-auto px-4 h-screen flex items-center">
+
+      <div className="container mx-auto px-4 h-screen flex items-center relative z-10">
         <div className="max-w-2xl">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -16,7 +16,7 @@ export default function Home() {
           >
             Hi, I'm Rahul Ankam
           </motion.h2>
-          
+
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -25,7 +25,7 @@ export default function Home() {
           >
             Full Stack Developer & UI/UX Designer
           </motion.h1>
-          
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -35,7 +35,7 @@ export default function Home() {
             I build exceptional digital experiences that combine beautiful design
             with powerful functionality
           </motion.p>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

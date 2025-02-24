@@ -70,15 +70,15 @@ export default function FloatingIcons() {
   return (
     <div 
       ref={containerRef} 
-      className="fixed inset-0 pointer-events-none overflow-hidden"
-      style={{ zIndex: 100 }} //added zIndex to bring to foreground
+      className="absolute inset-0 pointer-events-none overflow-hidden -z-10"
+      aria-hidden="true"
     >
       {icons.map(({ Icon }, index) => (
         <Icon
           key={index}
-          className="absolute text-[#FFA94D] w-64 h-64 md:w-72 md:h-72"
+          className="absolute text-[#FFA94D] w-24 h-24 md:w-32 md:h-32"
           style={{ 
-            filter: 'blur(3px)',
+            filter: 'blur(1px)',
             willChange: 'transform'
           }}
         />
