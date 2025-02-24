@@ -1,11 +1,9 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { SiReact, SiNodedotjs, SiJavascript } from "react-icons/si";
+import { SiReact } from "react-icons/si";
 
 const icons = [
   { Icon: SiReact, delay: 0 },
-  { Icon: SiNodedotjs, delay: 2 },
-  { Icon: SiJavascript, delay: 4 },
 ];
 
 export default function FloatingIcons() {
@@ -19,33 +17,33 @@ export default function FloatingIcons() {
     const iconElements = Array.from(container.children);
 
     iconElements.forEach((icon, index) => {
-      // Set initial random positions
+      // Set initial positions
       gsap.set(icon, {
         x: Math.random() * window.innerWidth * 0.8,
         y: Math.random() * window.innerHeight * 0.8,
-        opacity: 0.2
+        opacity: 0.2 // Lighter opacity
       });
 
       // Create simple floating animation
       gsap.to(icon, {
-        duration: "random(15, 20)",
+        duration: "random(10, 20)",  // Faster, shorter movement
         x: "+=50",
         y: "+=30",
         rotation: "random(-45, 45)",
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut",
-        delay: index * 2
+        delay: index * 1
       });
 
       // Create opacity animation
       gsap.to(icon, {
-        duration: 3,
-        opacity: 0.6,
+        duration: 2,
+        opacity: 0.6,  // Higher peak opacity
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut",
-        delay: index
+        delay: index * 1
       });
     });
 
@@ -62,7 +60,7 @@ export default function FloatingIcons() {
       {icons.map(({ Icon }, index) => (
         <Icon
           key={index}
-          className="absolute text-[#FFA94D]/20 w-20 h-20"
+          className="absolute text-[#FFA94D] w-48 h-48"  // Increased size
         />
       ))}
     </div>
