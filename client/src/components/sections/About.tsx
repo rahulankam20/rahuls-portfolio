@@ -1,13 +1,24 @@
 import { motion } from "framer-motion";
-import { SiReact, SiTypescript, SiNodedotjs, SiPython, SiJavascript, SiDocker } from "react-icons/si";
+import { 
+  SiHtml5, SiCss3, SiJavascript, SiReact, SiBootstrap, 
+  SiTailwindcss, SiTypescript, SiNodedotjs, SiExpress,
+  SiMysql, SiMongodb, SiGit, SiGithub 
+} from "react-icons/si";
 
 const skills = [
-  { name: "React", icon: SiReact },
+  { name: "HTML", icon: SiHtml5 },
+  { name: "CSS", icon: SiCss3 },
+  { name: "JavaScript", icon: SiJavascript },
+  { name: "React.js", icon: SiReact },
+  { name: "Bootstrap", icon: SiBootstrap },
+  { name: "Tailwind CSS", icon: SiTailwindcss },
   { name: "TypeScript", icon: SiTypescript },
   { name: "Node.js", icon: SiNodedotjs },
-  { name: "Python", icon: SiPython },
-  { name: "JavaScript", icon: SiJavascript },
-  { name: "Docker", icon: SiDocker },
+  { name: "Express.js", icon: SiExpress },
+  { name: "MySQL", icon: SiMysql },
+  { name: "MongoDB", icon: SiMongodb },
+  { name: "Git", icon: SiGit },
+  { name: "GitHub", icon: SiGithub }
 ];
 
 const education = [

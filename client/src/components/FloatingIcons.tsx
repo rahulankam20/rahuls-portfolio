@@ -1,14 +1,12 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
-import { SiHtml5, SiCss3, SiJavascript, SiNodedotjs, SiExpress, SiMongodb } from "react-icons/si";
+import { SiReact, SiJavascript, SiTypescript, SiNodedotjs } from "react-icons/si";
 
 const icons = [
-  { Icon: SiHtml5, delay: 0 },
-  { Icon: SiCss3, delay: 1 },
-  { Icon: SiJavascript, delay: 2 },
+  { Icon: SiJavascript, delay: 0 },
+  { Icon: SiReact, delay: 1 },
+  { Icon: SiTypescript, delay: 2 },
   { Icon: SiNodedotjs, delay: 3 },
-  { Icon: SiExpress, delay: 4 },
-  { Icon: SiMongodb, delay: 5 },
 ];
 
 export default function FloatingIcons() {
@@ -25,40 +23,40 @@ export default function FloatingIcons() {
     const iconElements = Array.from(container.children);
 
     iconElements.forEach((icon, index) => {
-      // Randomize starting positions across the viewport
+      // Randomize starting positions
       const startX = Math.random() * window.innerWidth * 0.8;
       const startY = Math.random() * window.innerHeight * 0.8;
 
-      // Set initial positions with high opacity
+      // Set initial positions
       gsap.set(icon, {
         x: startX,
         y: startY,
-        opacity: 0.15,
+        opacity: 0.4,
         scale: 1,
         rotate: Math.random() * 360
       });
 
       // Create floating animation
       gsap.to(icon, {
-        duration: 30,
-        x: `+=${Math.random() * 300 - 150}`,
-        y: `+=${Math.random() * 300 - 150}`,
+        duration: 15,
+        x: `+=${Math.random() * 200 - 100}`,
+        y: `+=${Math.random() * 200 - 100}`,
         rotation: `+=${Math.random() * 360}`,
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut",
-        delay: index * 0.2
+        delay: index * 0.3
       });
 
       // Create scale and opacity animation
       gsap.to(icon, {
-        duration: 5,
+        duration: 4,
         scale: 1.2,
-        opacity: 0.25,
+        opacity: 0.6,
         repeat: -1,
         yoyo: true,
         ease: "power1.inOut",
-        delay: index * 0.3
+        delay: index * 0.2
       });
     });
 
@@ -76,7 +74,7 @@ export default function FloatingIcons() {
       {icons.map(({ Icon }, index) => (
         <Icon
           key={index}
-          className="absolute text-[#FFA94D] w-24 h-24 md:w-32 md:h-32"
+          className="absolute text-[#FFA94D] w-16 h-16 md:w-24 md:h-24"
           style={{ 
             filter: 'blur(1px)',
             willChange: 'transform'
