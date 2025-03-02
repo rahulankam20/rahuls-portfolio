@@ -1,28 +1,36 @@
+
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { ExternalLink } from "lucide-react";
 
 const projects = [
   {
-    title: "E-commerce Platform",
-    description: "A full-featured e-commerce platform with real-time inventory management",
-    preview: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=800&q=80",
-    url: "https://example.com/project1",
-    technologies: ["React", "Node.js", "MongoDB"]
+    title: "Real Time Weather App",
+    description: "Gives Real Time Weather details of cities around the world using React and API.",
+    preview: "../public/real-time-weather-app.png",
+    url: "https://real-time-weather-tau.vercel.app/",
+    technologies: ["React", "API", "Material-UI"]
   },
   {
-    title: "Task Management App",
-    description: "Collaborative task management application with real-time updates",
-    preview: "https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?auto=format&fit=crop&w=800&q=80",
-    url: "https://example.com/project2",
-    technologies: ["Vue.js", "Express", "PostgreSQL"]
+    title: "GYM Website",
+    description: "Fitness-focused website",
+    preview: "../public/gym-website.png",
+    url: "https://rafitness.vercel.app/",
+    technologies: ["HTML", "CSS", "JavaScript"]
   },
   {
-    title: "Social Media Dashboard",
-    description: "Analytics dashboard for social media management",
-    preview: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-    url: "https://example.com/project3",
-    technologies: ["React", "GraphQL", "AWS"]
+    title: "Amazon Clone",
+    description: "Pixel perfect clone of Amazon landing page",
+    preview: "../public/amazon-clone.png",
+    url: "https://amazons-cloneweb.vercel.app/",
+    technologies: ["HTML", "CSS"]
+  },
+  {
+    title: "Tic Tac Toe Game",
+    description: "Interactive game with logic",
+    preview: "../public/tic-tac-toe.png",
+    url: "https://tic-tac-toe-game-zeta-one.vercel.app/",
+    technologies: ["HTML", "CSS", "JavaScript"]
   }
 ];
 
@@ -43,9 +51,10 @@ export default function Projects() {
     <section id="projects" className="min-h-screen py-24">
       <div className="container mx-auto px-4">
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
           className="text-4xl font-bold mb-12 text-[#FFA94D]"
         >
           Featured Projects
@@ -55,12 +64,13 @@ export default function Projects() {
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               onMouseMove={(e) => handleMouseMove(e, index)}
               onMouseLeave={handleMouseLeave}
-              className="p-8 bg-card rounded-lg border border-border cursor-none relative group"
+              className="p-8 bg-card rounded-lg border border-border max-w-[70%] mx-auto cursor-none relative group"
             >
               <h3 className="text-2xl font-semibold mb-3">{project.title}</h3>
               <p className="text-muted-foreground mb-4">{project.description}</p>
@@ -107,7 +117,7 @@ export default function Projects() {
                   className="object-cover w-full h-full opacity-50"
                 />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <p className="text-white font-medium flex items-center gap-2">
+                  <p className="text-white font-medium bg-[#ffa94d] px-3 py-2 rounded-lg flex items-center gap-2">
                     View Project <ExternalLink size={16} />
                   </p>
                 </div>
@@ -119,3 +129,4 @@ export default function Projects() {
     </section>
   );
 }
+

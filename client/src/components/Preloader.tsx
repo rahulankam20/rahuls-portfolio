@@ -4,10 +4,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 const greetings = [
   { text: "Hello", language: "English" },
   { text: "नमस्ते", language: "Hindi" },
-  { text: "Bonjour", language: "French" },
   { text: "Hola", language: "Spanish" },
+  { text: "Bonjour", language: "French" },
   { text: "こんにちは", language: "Japanese" },
   { text: "안녕하세요", language: "Korean" },
+  { text: "नमस्ते", language: "Hindi" },
   { text: "你好", language: "Chinese" },
   { text: "Ciao", language: "Italian" },
 ];
@@ -17,7 +18,6 @@ export default function Preloader() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Change greeting every 200ms
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % greetings.length);
     }, 200);

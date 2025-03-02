@@ -1,10 +1,17 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
+
+const { join } = path;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(express.static(join(__dirname, '../client/dist')));
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -58,12 +65,8 @@ app.use((req, res, next) => {
 
   // ALWAYS serve the app on port 5000
   // this serves both the API and the client
-  const port = 5000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
+  const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  log(`Server running on http://localhost:${PORT}`);
+});
 })();
