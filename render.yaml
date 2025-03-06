@@ -1,0 +1,22 @@
+services:
+  - name: backend
+    type: web
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 18
+      - key: PORT
+        value: 10000
+      - key: EMAIL
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+
+  - name: frontend
+    type: static
+    buildCommand: npm install && npm run build
+    publishPath: client/dist
