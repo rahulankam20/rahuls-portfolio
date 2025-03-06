@@ -12,6 +12,7 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ title, description, image, url, technologies }: ProjectCardProps) {
+  console.log("Image Path:", image); 
   return (
     <motion.div
       data-project-card

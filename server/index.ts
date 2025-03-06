@@ -73,6 +73,8 @@ app.use((req, res, next) => {
     serveStatic(app);
   }
 
+
+
   // Use the correct PORT for deployment
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
