@@ -1,17 +1,23 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
+import cors from "cors"; // Import CORS for handling cross-origin requests
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const { join } = path;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const app = express();
+
+// Enable CORS (important if frontend is hosted separately)
+app.use(cors({ origin: process.env.CLIENT_URL || "*" }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(join(__dirname, '../client/dist')));
+
+// Serve the frontend (important for deployment)
+app.use(express.static(join(__dirname, "../client/dist")));
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -54,19 +60,16 @@ app.use((req, res, next) => {
     throw err;
   });
 
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
+  // Setup Vite for development, serve static files in production
   if (app.get("env") === "development") {
     await setupVite(app, server);
   } else {
     serveStatic(app);
   }
 
-  // ALWAYS serve the app on port 5000
-  // this serves both the API and the client
+  // Use the correct PORT for deployment
   const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  log(`Server running on http://localhost:${PORT}`);
-});
+  app.listen(PORT, () => {
+    console.log(`✅ Server running on port ${PORT}`);
+  });
 })();
