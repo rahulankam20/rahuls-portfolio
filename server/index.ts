@@ -16,8 +16,14 @@ app.use(cors({ origin: process.env.CLIENT_URL || "*" }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Serve the frontend (important for deployment)
-app.use(express.static(join(__dirname, "../client/dist")));
+// ✅ Serve static files (Ensures images and assets load correctly)
+const distPath = path.resolve(__dirname, "../dist/public");
+app.use(express.static(distPath));
+
+// ✅ Serve React app (For React SPA routing)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(distPath, "index.html"));
+});
 
 app.use((req, res, next) => {
   const start = Date.now();
