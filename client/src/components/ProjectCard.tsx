@@ -22,7 +22,7 @@ export default function ProjectCard({ title, description, image, url, technologi
       <Card className="overflow-hidden">
         <div className="relative aspect-video">
           <img
-            src={image}
+            src={`${image}?v=${new Date().getTime()}`}
             alt={title}
             className="object-cover w-full h-full"
           />
